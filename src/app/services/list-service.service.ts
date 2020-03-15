@@ -7,11 +7,11 @@ import { ShoppingList } from '../interfaces/ShoppingList';
 export class ListService {
   static getList(): ShoppingList {
     return {
-      name: 'Prima lista',
-      description: 'Prima lista mai scritta in typescript da me',
+      name: 'Esselunga',
+      description: 'Lista della spesa ordinaria',
       categoryList: [
         {
-          name: 'categoria 1',
+          name: 'Verdura',
           description: 'descrizione 1',
           elementList: [
             {
@@ -28,15 +28,35 @@ export class ListService {
           subcategoryList: []
         },
         {
-          name: 'categoria 2',
-          description: 'descrizione 2',
-          elementList: [],
+          name: 'Colazione',
+          description: '',
+          elementList: [{
+            name: 'Biscotti',
+            description: '',
+            quantity: 1
+          },
+          {
+            name: 'Yogurt',
+            description: 'quelle dolci',
+            quantity: 2
+          }],
           subcategoryList: []
         },
         {
-          name: 'categoria 3',
+          name: 'Banco',
           description: 'descrizione 3',
-          elementList: [],
+          elementList: [
+            {
+            name: 'Prosciutto cotto',
+            description: '',
+            quantity: 5
+          },
+          {
+            name: 'Pane',
+            description: 'quelle dolci',
+            quantity: 6
+          }
+        ],
           subcategoryList: []
         }
       ]

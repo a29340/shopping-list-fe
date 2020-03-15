@@ -1,1 +1,17 @@
-<mat-card>{{category.name}}</mat-card>
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{category.name}}
+    </mat-panel-title>
+    <mat-panel-description>
+      {{category.description}}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <mat-list>
+    <mat-list-item *ngFor='let element of category.elementList'>
+      <app-shopping-element [element]="element"></app-shopping-element>
+    </mat-list-item>
+  </mat-list>
+
+</mat-expansion-panel>

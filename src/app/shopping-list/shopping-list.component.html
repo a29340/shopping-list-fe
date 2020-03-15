@@ -1,6 +1,7 @@
-<div>
-    <h2>{{list.name}}</h2>
-</div>
-<div *ngFor="let category of list.categoryList">
-    <app-shopping-category [category]="category"></app-shopping-category>
-</div>
+<mat-tab-group>
+    <mat-tab [label]="list.name">
+        <mat-accordion multi=true>
+            <app-shopping-category *ngFor="let category of list.categoryList" [category]="category"></app-shopping-category>
+        </mat-accordion>
+    </mat-tab>
+</mat-tab-group>
