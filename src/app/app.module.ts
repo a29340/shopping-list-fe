@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { ShoppingElementComponent } from './shopping-element/shopping-element.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatExpansionModule,
     MatListModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
