@@ -3,11 +3,11 @@ import { ShoppingList } from '../interfaces/ShoppingList';
 import { ListService } from '../services/list-service.service';
 
 @Component({
-  selector: 'app-shoppinglist',
-  templateUrl: './shoppinglist.component.html',
-  styleUrls: ['./shoppinglist.component.css']
+  selector: 'app-shopping-list',
+  templateUrl: './shopping-list.component.html',
+  styleUrls: ['./shopping-list.component.css']
 })
-export class ShoppinglistComponent implements OnInit {
+export class ShoppingListComponent implements OnInit {
 
   list: ShoppingList;
 

@@ -4,15 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ShoppingCategoryComponent } from './shopping-category/shopping-category.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShoppinglistComponent
+    ShoppingListComponent,
+    ShoppingCategoryComponent
   ],
   imports: [
     BrowserModule,

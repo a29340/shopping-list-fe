@@ -1,9 +1,6 @@
 <div>
     <h2>{{list.name}}</h2>
 </div>
-<div>
-    <span>{{list.description}}</span>
-</div>
 <div *ngFor="let category of list.categoryList">
-    <mat-card>{{category.name}}</mat-card>
+    <app-shopping-category [category]="category"></app-shopping-category>
 </div>
