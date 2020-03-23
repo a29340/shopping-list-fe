@@ -11,10 +11,24 @@ export class ShoppingListComponent implements OnInit {
 
   list: ShoppingList;
 
-  constructor() { }
+  constructor(private listService: ListService) { }
 
   ngOnInit() {
-    this.list = ListService.getList();
+    this.list = {
+      "name": "",
+      "description": "",
+      "categoryList": []
+    }
+    this.getLists()
+  }
+
+  getLists(): void {
+    this.listService.getList().subscribe({
+      next: (lists => {
+        this.list = lists[0];
+      }),
+      error: (error => console.log("Error loading lists: " + error))
+    })
   }
 
 }

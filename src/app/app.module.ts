@@ -14,13 +14,16 @@ import { ShoppingElementComponent } from './shopping-element/shopping-element.co
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+import { AppContainerComponent } from './app-container/app-container.component';
+import { HttpClientModule }    from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShoppingListComponent,
     ShoppingCategoryComponent,
-    ShoppingElementComponent
+    ShoppingElementComponent,
+    AppContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatListModule,
     MatCheckboxModule,
     MatTabsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
