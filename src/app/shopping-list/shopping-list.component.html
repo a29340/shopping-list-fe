@@ -1,13 +1,21 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <mat-icon class="tool-bar-icon">assignment</mat-icon>
-        <span>Shopping List</span>
-    </mat-toolbar-row>
+    <h1>
+        <mat-toolbar-row>
+            <mat-icon class="tool-bar-icon">assignment</mat-icon>
+            <span>Shopping List</span>
+        </mat-toolbar-row>
+    </h1>
 </mat-toolbar>
 <mat-tab-group>
-    <mat-tab [label]="list.name">
+    <mat-tab *ngFor="let list of lists" [label]="list.name">
         <mat-accordion multi=true>
-            <app-shopping-category *ngFor="let category of list.categoryList" [category]="category"></app-shopping-category>
+            <app-shopping-category *ngFor="let category of list.categoryList" [category]="category">
+            </app-shopping-category>
         </mat-accordion>
     </mat-tab>
 </mat-tab-group>
+<div class="edit-button-container">
+    <button mat-fab color="primary" aria-label="Edit list button">
+        <mat-icon>edit</mat-icon>
+    </button>
+</div>

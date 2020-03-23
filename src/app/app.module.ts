@@ -15,7 +15,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { AppContainerComponent } from './app-container/app-container.component';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { HttpClientModule }    from '@angular/common/http';
     MatCheckboxModule,
     MatTabsModule,
     MatIconModule,
+    MatButtonModule,
     HttpClientModule
   ],
   providers: [],

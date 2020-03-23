@@ -1,3 +1,13 @@
+h1 {
+    font-size: 150%;
+}
 .tool-bar-icon {
-    padding-right: 8px;
+    padding: 8px;
+}
+
+.edit-button-container {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    z-index: 100;
 }

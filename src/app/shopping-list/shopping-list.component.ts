@@ -9,23 +9,23 @@ import { ListService } from '../services/list-service.service';
 })
 export class ShoppingListComponent implements OnInit {
 
-  list: ShoppingList;
+  lists: ShoppingList[];
 
   constructor(private listService: ListService) { }
 
   ngOnInit() {
-    this.list = {
+    this.lists = [{
       "name": "",
       "description": "",
       "categoryList": []
-    }
+    }]
     this.getLists()
   }
 
   getLists(): void {
     this.listService.getList().subscribe({
       next: (lists => {
-        this.list = lists[0];
+        this.lists = lists;
       }),
       error: (error => console.log("Error loading lists: " + error))
     })
