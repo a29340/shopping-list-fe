@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ShoppingList } from '../interfaces/ShoppingList';
 import { ListService } from '../services/list-service.service';
 
@@ -9,26 +9,25 @@ import { ListService } from '../services/list-service.service';
 })
 export class ShoppingListComponent implements OnInit {
 
-  lists: ShoppingList[];
+  @Input() list: ShoppingList;
+
+
+  isModifing: boolean;
 
   constructor(private listService: ListService) { }
 
   ngOnInit() {
-    this.lists = [{
-      "name": "",
-      "description": "",
-      "categoryList": []
-    }]
-    this.getLists()
+    this.isModifing = false;
   }
 
-  getLists(): void {
-    this.listService.getList().subscribe({
-      next: (lists => {
-        this.lists = lists;
-      }),
-      error: (error => console.log("Error loading lists: " + error))
-    })
+ 
+
+  toggleModifing(): void {
+    this.isModifing = true;
+  }
+
+  saveList(): void {
+    this.isModifing = false;
   }
 
 }

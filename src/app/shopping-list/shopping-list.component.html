@@ -1,21 +1,13 @@
-<mat-toolbar color="primary">
-    <h1>
-        <mat-toolbar-row>
-            <mat-icon class="tool-bar-icon">assignment</mat-icon>
-            <span>Shopping List</span>
-        </mat-toolbar-row>
-    </h1>
-</mat-toolbar>
-<mat-tab-group>
-    <mat-tab *ngFor="let list of lists" [label]="list.name">
-        <mat-accordion multi=true>
-            <app-shopping-category *ngFor="let category of list.categoryList" [category]="category">
-            </app-shopping-category>
-        </mat-accordion>
-    </mat-tab>
-</mat-tab-group>
+<app-shopping-category *ngFor="let category of list.categoryList" 
+    [category]="category" 
+    [expanded]="true"
+    [isModifing]="isModifing">
+</app-shopping-category>
 <div class="edit-button-container">
-    <button mat-fab color="primary" aria-label="Edit list button">
+    <button mat-fab color="primary" *ngIf="!isModifing" aria-label="Edit list button" (click)="toggleModifing()">
         <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-fab color="primary" *ngIf="isModifing" aria-label="Edit list button" (click)="saveList()">
+        <mat-icon>save</mat-icon>
     </button>
 </div>

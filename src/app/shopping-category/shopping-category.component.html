@@ -1,4 +1,4 @@
-<mat-expansion-panel>
+<mat-expansion-panel displayMode="flat" [expanded]="expanded">
   <mat-expansion-panel-header>
     <mat-panel-title>
       {{category.name}}
@@ -10,8 +10,12 @@
 
   <mat-list>
     <mat-list-item *ngFor='let element of category.elementList'>
-      <app-shopping-element [element]="element"></app-shopping-element>
+      <app-shopping-element [element]="element" [isModifing]="isModifing"></app-shopping-element>
+    </mat-list-item>
+    <mat-list-item *ngIf='isModifing'>
+      <button mat-icon-button color="primary" aria-label="Add element to the list" (click)="createElement()">
+        <mat-icon>add</mat-icon>
+      </button>
     </mat-list-item>
   </mat-list>
-
 </mat-expansion-panel>

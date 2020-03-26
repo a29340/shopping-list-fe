@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ShoppingElement } from '../interfaces/ShoppingElement';
 
 @Component({
@@ -10,10 +11,12 @@ export class ShoppingElementComponent implements OnInit {
 
   @Input() element: ShoppingElement;
   
+  @Input() isModifing: boolean;
   
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
