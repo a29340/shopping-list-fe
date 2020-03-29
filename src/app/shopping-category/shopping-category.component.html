@@ -10,10 +10,10 @@
 
   <mat-list>
     <mat-list-item *ngFor='let element of category.elementList'>
-      <app-shopping-element [element]="element" [isModifing]="isModifing"></app-shopping-element>
+      <app-shopping-element [element]="element" [isModifing]="isModifing" (removeMe)="removeElement($event)"></app-shopping-element>
     </mat-list-item>
     <mat-list-item *ngIf='isModifing'>
-      <button mat-icon-button color="primary" aria-label="Add element to the list" (click)="createElement()">
+      <button mat-mini-fab color="primary" aria-label="Add element to the list" (click)="createElement()">
         <mat-icon>add</mat-icon>
       </button>
     </mat-list-item>

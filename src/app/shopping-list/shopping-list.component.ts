@@ -20,13 +20,19 @@ export class ShoppingListComponent implements OnInit {
     this.isModifing = false;
   }
 
- 
-
   toggleModifing(): void {
     this.isModifing = true;
   }
 
   saveList(): void {
+    this.listService.saveList(this.list).subscribe({
+      next: function() {
+        console.log("Salvato!")
+      },
+      error: function() {
+        console.log("Errore!")
+      }
+    });
     this.isModifing = false;
   }
 

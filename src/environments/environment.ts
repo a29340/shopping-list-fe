@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: "http://shoppinglist.ddns.net/api/shoppinglist"
+  backendUrl: "http://192.168.1.123:8081/api/shoppinglist"
 };
 
 /*

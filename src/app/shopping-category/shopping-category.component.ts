@@ -29,4 +29,11 @@ export class ShoppingCategoryComponent implements OnInit {
     this.category.elementList.push(element)
   }
 
+  removeElement(element: ShoppingElement) {
+    let index = this.category.elementList.indexOf(element);
+    if(index>0){
+      this.category.elementList.splice(index, 1);
+    }
+  }
+
 }

@@ -23,7 +23,7 @@ export class AppContainerComponent implements OnInit {
   }
 
   getLists(): void {
-    this.listService.getList().subscribe({
+    this.listService.getLists().subscribe({
       next: (lists => {
         this.lists = lists;
       }),

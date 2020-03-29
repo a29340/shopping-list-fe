@@ -9,4 +9,7 @@
     <mat-form-field class="name-container" appearance="standard">
         <input matInput placeholder="Name" [(ngModel)]="element.name" />
     </mat-form-field>
+    <button mat-icon-button color="primary" (click)="removeElement()">
+        <mat-icon>close</mat-icon>
+    </button>
 </div>
