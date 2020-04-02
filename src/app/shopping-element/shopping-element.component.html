@@ -1,15 +1,17 @@
-<div *ngIf="!isModifing" class="element-container">
-    <span class="quantity-container">{{element.quantity}}</span>
-    <span class="name-container">{{element.name}}</span>
-</div>
-<div *ngIf="isModifing" class="element-container">
-    <mat-form-field class="quantity-container" appearance="standard">
-        <input type="number" matInput placeholder="Quantity" [(ngModel)]="element.quantity"/>
-    </mat-form-field>
-    <mat-form-field class="name-container" appearance="standard">
-        <input matInput placeholder="Name" [(ngModel)]="element.name" />
-    </mat-form-field>
-    <button mat-icon-button color="primary" (click)="removeElement()">
-        <mat-icon>close</mat-icon>
-    </button>
+<div class="shopping-element-container">
+    <div *ngIf="!isModifing" class="element-container">
+        <span class="quantity-container">{{element.quantity}}</span>
+        <span class="name-container">{{element.name}}</span>
+    </div>
+    <div *ngIf="isModifing" class="element-container">
+        <mat-form-field class="quantity-container" appearance="standard">
+            <input type="number" matInput placeholder="Quantity" [(ngModel)]="element.quantity"/>
+        </mat-form-field>
+        <mat-form-field class="name-container" appearance="standard">
+            <input matInput placeholder="Name" [(ngModel)]="element.name" />
+        </mat-form-field>
+        <button mat-icon-button color="primary" (click)="removeElement()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
 </div>

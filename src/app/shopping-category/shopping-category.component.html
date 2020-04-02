@@ -1,16 +1,27 @@
 <mat-expansion-panel displayMode="flat" [expanded]="expanded">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      {{category.name}}
+      <mat-form-field *ngIf="isModifing">
+        <input matInput [(ngModel)]="category.name" />
+      </mat-form-field>
+      <span *ngIf="!isModifing">
+        {{category.name}}
+      </span>
     </mat-panel-title>
     <mat-panel-description>
-      {{category.description}}
+      <mat-form-field *ngIf="isModifing">
+        <input matInput [(ngModel)]="category.description" />
+      </mat-form-field>
+      <span *ngIf="!isModifing">
+        {{category.description}}
+      </span>
     </mat-panel-description>
   </mat-expansion-panel-header>
 
   <mat-list>
     <mat-list-item *ngFor='let element of category.elementList'>
-      <app-shopping-element [element]="element" [isModifing]="isModifing" (removeMe)="removeElement($event)"></app-shopping-element>
+      <app-shopping-element [element]="element" [isModifing]="isModifing" (removeMe)="removeElement($event)">
+      </app-shopping-element>
     </mat-list-item>
     <mat-list-item *ngIf='isModifing'>
       <button mat-mini-fab color="primary" aria-label="Add element to the list" (click)="createElement()">

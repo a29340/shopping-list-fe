@@ -4,3 +4,10 @@
     bottom: 50px;
     z-index: 100;
 }
+
+h1 {
+    font-size: 150%;
+}
+.tool-bar-icon {
+    padding: 8px;
+}

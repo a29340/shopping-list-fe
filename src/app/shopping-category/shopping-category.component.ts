@@ -14,7 +14,7 @@ export class ShoppingCategoryComponent implements OnInit {
   @Input() isModifing: boolean;
 
   @Input() expanded: boolean;
-  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class ShoppingCategoryComponent implements OnInit {
 
   removeElement(element: ShoppingElement) {
     let index = this.category.elementList.indexOf(element);
-    if(index>0){
+    if (index > 0) {
       this.category.elementList.splice(index, 1);
     }
   }

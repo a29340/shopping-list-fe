@@ -14,7 +14,6 @@ import { ShoppingElementComponent } from './shopping-element/shopping-element.co
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
-import { AppContainerComponent } from './app-container/app-container.component';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -27,8 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AppComponent,
     ShoppingListComponent,
     ShoppingCategoryComponent,
-    ShoppingElementComponent,
-    AppContainerComponent
+    ShoppingElementComponent
   ],
   imports: [
     BrowserModule,

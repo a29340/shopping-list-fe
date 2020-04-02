@@ -26,7 +26,11 @@ export class ListService {
   }
   
   saveList(list: ShoppingList) {
-    return this.http.post<ShoppingList>(this.backendUrl, list)
+    return this.http.post<ShoppingList>(this.backendUrl, list);
   } 
-
+  
+  deleteList(list: ShoppingList): Observable<any> {
+    let resourceUri = this.backendUrl + "/" + encodeURIComponent(list.name);
+    return this.http.delete(resourceUri);
+  }
 }
