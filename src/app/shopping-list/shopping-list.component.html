@@ -1,8 +1,11 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <h1>
-            <mat-icon class="tool-bar-icon">assignment</mat-icon>
-            <span>Shopping List</span>
+        <mat-icon class="tool-bar-icon">menu</mat-icon>
+        <img src="assets/profile.jpg" class="profile-img"/>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <h1 class="toolbar-title">
+            Shopping List
         </h1>
     </mat-toolbar-row>
 </mat-toolbar>
@@ -15,27 +18,21 @@
                 <mat-icon class="remove-tab-icon">close</mat-icon>
             </button>
             {{list.name}}
-          </ng-template>
+        </ng-template>
         <app-shopping-category *ngFor="let category of list.categoryList" [category]="category" [expanded]="true"
             [isModifing]="isModifing">
         </app-shopping-category>
-        <button mat-mini-fab 
-                *ngIf="isModifing"
-                color="primary" 
-                aria-label="Add element to the list" 
-                (click)="createCategory(list)">
+        <button mat-mini-fab *ngIf="isModifing" color="primary" aria-label="Add element to the list"
+            (click)="createCategory(list)">
             <mat-icon>add</mat-icon>
         </button>
     </mat-tab>
 </mat-tab-group>
 <div class="edit-button-container">
-    <button mat-fab color="primary" *ngIf="!isModifing" aria-label="Edit list button"
-        (click)="toggleModifing()">
+    <button mat-fab color="primary" *ngIf="!isModifing" aria-label="Edit list button" (click)="toggleModifing()">
         <mat-icon>edit</mat-icon>
     </button>
-    <button mat-fab color="primary" 
-        *ngIf="isModifing" 
-        aria-label="Edit list button" 
+    <button mat-fab color="primary" *ngIf="isModifing" aria-label="Edit list button"
         (click)="saveList(lists[selectedListIndex])">
         <mat-icon>save</mat-icon>
     </button>
