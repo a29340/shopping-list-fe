@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <mat-icon class="tool-bar-icon">menu</mat-icon>
-        <img src="assets/profile.jpg" class="profile-img"/>
+        <img src="assets/profile.jpg" class="profile-img" />
     </mat-toolbar-row>
     <mat-toolbar-row>
         <h1 class="toolbar-title">
@@ -10,30 +10,42 @@
     </mat-toolbar-row>
 </mat-toolbar>
 
+<div class="cards-container" cdkDropListGroup>
+    <div class="cards-container-column">
+        <div *ngFor="let list of lists; even as isEven" cdkDropList (cdkDropListDropped)="drop($event)">
+            <mat-card class="list-card" *ngIf="isEven" cdkDrag>
+                <mat-card-header>
+                    <mat-card-title> {{list.name}}</mat-card-title>
+                    <mat-card-subtitle>{{list.description}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-list>
+                    <mat-list-item *ngFor="let category of list.categoryList">
+                        {{category.name}}
+                    </mat-list-item>
+                </mat-list>
+            </mat-card>
+        </div>
+    </div>
+    <div class="cards-container-column">
+        <div *ngFor="let list of lists; odd as isOdd" cdkDropList (cdkDropListDropped)="drop($event)">
+            <mat-card class="list-card" *ngIf="isOdd" cdkDrag>
+                <mat-card-header>
+                    <mat-card-title> {{list.name}}</mat-card-title>
+                    <mat-card-subtitle>{{list.description}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-list>
+                    <mat-list-item *ngFor="let category of list.categoryList">
+                        {{category.name}}
+                    </mat-list-item>
+                </mat-list>
+            </mat-card>
+        </div>
+    </div>
+</div>
 
-<mat-tab-group (selectedIndexChange)="selectedListIndex=$event">
-    <mat-tab *ngFor="let list of lists">
-        <ng-template mat-tab-label>
-            <button mat-icon-button *ngIf="isModifing" (click)="deleteList(list)">
-                <mat-icon class="remove-tab-icon">close</mat-icon>
-            </button>
-            {{list.name}}
-        </ng-template>
-        <app-shopping-category *ngFor="let category of list.categoryList" [category]="category" [expanded]="true"
-            [isModifing]="isModifing">
-        </app-shopping-category>
-        <button mat-mini-fab *ngIf="isModifing" color="primary" aria-label="Add element to the list"
-            (click)="createCategory(list)">
-            <mat-icon>add</mat-icon>
-        </button>
-    </mat-tab>
-</mat-tab-group>
+
 <div class="edit-button-container">
-    <button mat-fab color="primary" *ngIf="!isModifing" aria-label="Edit list button" (click)="toggleModifing()">
-        <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-fab color="primary" *ngIf="isModifing" aria-label="Edit list button"
-        (click)="saveList(lists[selectedListIndex])">
-        <mat-icon>save</mat-icon>
+    <button mat-fab color="primary" aria-label="Add a list button">
+        <mat-icon>add</mat-icon>
     </button>
 </div>

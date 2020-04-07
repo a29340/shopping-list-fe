@@ -18,6 +18,9 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 
 
@@ -43,8 +46,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
+    MatGridListModule,
+    DragDropModule,
     HttpClientModule,
-    HttpClientXsrfModule.withOptions({cookieName: 'XSRF-TOKEN'})
+    HttpClientXsrfModule.withOptions({ cookieName: 'XSRF-TOKEN' })
   ],
   providers: [],
   bootstrap: [AppComponent]
