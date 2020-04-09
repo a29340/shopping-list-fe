@@ -11,9 +11,9 @@
 </mat-toolbar>
 
 <div class="cards-container" cdkDropListGroup>
-    <div class="cards-container-column">
-        <div *ngFor="let list of lists; even as isEven" cdkDropList (cdkDropListDropped)="drop($event)">
-            <mat-card class="list-card" *ngIf="isEven" cdkDrag>
+    <div class="cards-container-column"  cdkDropList (cdkDropListDropped)="drop($event)">
+        <div class="list-card" *ngFor="let list of lists; even as isEven" cdkDrag>
+            <mat-card *ngIf="isEven" >
                 <mat-card-header>
                     <mat-card-title> {{list.name}}</mat-card-title>
                     <mat-card-subtitle>{{list.description}}</mat-card-subtitle>
@@ -26,9 +26,9 @@
             </mat-card>
         </div>
     </div>
-    <div class="cards-container-column">
-        <div *ngFor="let list of lists; odd as isOdd" cdkDropList (cdkDropListDropped)="drop($event)">
-            <mat-card class="list-card" *ngIf="isOdd" cdkDrag>
+    <div class="cards-container-column" cdkDropList (cdkDropListDropped)="drop($event)">
+        <div class="list-card" *ngFor="let list of lists; odd as isOdd" cdkDrag>
+            <mat-card  *ngIf="isOdd" >
                 <mat-card-header>
                     <mat-card-title> {{list.name}}</mat-card-title>
                     <mat-card-subtitle>{{list.description}}</mat-card-subtitle>

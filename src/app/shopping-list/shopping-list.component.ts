@@ -76,7 +76,9 @@ export class ShoppingListComponent implements OnInit {
     })
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.lists, event.previousIndex, event.currentIndex);
+  drop(event: CdkDragDrop<ShoppingList[]>) {
+    let swappingList = this.lists[event.currentIndex]
+    this.lists[event.currentIndex] = this.lists[event.previousIndex]
+    this.lists[event.previousIndex] = swappingList
   }
 }

@@ -60,6 +60,6 @@ mat-toolbar-row>mat-icon {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.cards-container-column > div.example-list.cdk-drop-list-dragging .list-card:not(.cdk-drag-placeholder) {
+.cards-container-column > div.cards-container-column.cdk-drop-list-dragging .list-card:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
