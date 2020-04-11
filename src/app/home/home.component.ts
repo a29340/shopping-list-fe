@@ -1,27 +1,23 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ShoppingList } from '../interfaces/ShoppingList';
 import { ListService } from '../services/list-service.service';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 
 @Component({
-  selector: 'app-shopping-list',
-  templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class ShoppingListComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   lists: ShoppingList[];
-
-  isModifing: boolean;
-
-  selectedListIndex: number = 0;
 
   constructor(private listService: ListService) { }
 
   ngOnInit() {
-    this.isModifing = false;
     this.lists = [{
+      "id": null,
       "name": "",
       "description": "",
       "categoryList": []
@@ -29,20 +25,15 @@ export class ShoppingListComponent implements OnInit {
     this.getLists()
   }
 
-  toggleModifing(): void {
-    this.isModifing = true;
-  }
-
   saveList(list: ShoppingList): void {
     this.listService.saveList(list).subscribe({
-      next: function() {
+      next: function () {
         console.log("Salvato!")
       },
-      error: function() {
+      error: function () {
         console.log("Errore!")
       }
     });
-    this.isModifing = false;
   }
 
   getLists(): void {
@@ -67,18 +58,11 @@ export class ShoppingListComponent implements OnInit {
     return false;
   }
 
-  createCategory(list: ShoppingList): void {
-    list.categoryList.push({
-      name: "Nome",
-      description: "Description",
-      elementList: [],
-      subcategoryList: []
-    })
-  }
-
   drop(event: CdkDragDrop<ShoppingList[]>) {
-    let swappingList = this.lists[event.currentIndex]
-    this.lists[event.currentIndex] = this.lists[event.previousIndex]
-    this.lists[event.previousIndex] = swappingList
+    if (event.currentIndex != this.lists.length) {
+      let swappingList = this.lists[event.currentIndex]
+      this.lists[event.currentIndex] = this.lists[event.previousIndex]
+      this.lists[event.previousIndex] = swappingList
+    }
   }
 }

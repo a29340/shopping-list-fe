@@ -13,6 +13,7 @@ import { isPlatformServer } from '@angular/common';
 })
 export class ListService {
   
+  
   private backendUrl: string;
   
   private lists: ShoppingList[] = []; 
@@ -23,6 +24,10 @@ export class ListService {
   
   getLists(): Observable<ShoppingList[]> {
     return this.http.get<ShoppingList[]>(this.backendUrl);
+  }
+
+  getList(id: string) {
+    return this.http.get<ShoppingList>(this.backendUrl + "/" + id);
   }
   
   saveList(list: ShoppingList) {

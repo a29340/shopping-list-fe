@@ -1,18 +1,6 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <mat-icon class="tool-bar-icon">menu</mat-icon>
-        <img src="assets/profile.jpg" class="profile-img" />
-    </mat-toolbar-row>
-    <mat-toolbar-row>
-        <h1 class="toolbar-title">
-            Shopping List
-        </h1>
-    </mat-toolbar-row>
-</mat-toolbar>
-
 <div class="cards-container" cdkDropListGroup>
     <div class="cards-container-column"  cdkDropList (cdkDropListDropped)="drop($event)">
-        <div class="list-card" *ngFor="let list of lists; even as isEven" cdkDrag>
+        <div class="list-card" *ngFor="let list of lists; even as isEven;" cdkDrag  [routerLink]="['/list-detail', list.id]">
             <mat-card *ngIf="isEven" >
                 <mat-card-header>
                     <mat-card-title> {{list.name}}</mat-card-title>
@@ -27,7 +15,7 @@
         </div>
     </div>
     <div class="cards-container-column" cdkDropList (cdkDropListDropped)="drop($event)">
-        <div class="list-card" *ngFor="let list of lists; odd as isOdd" cdkDrag>
+        <div class="list-card" *ngFor="let list of lists; odd as isOdd;" cdkDrag [routerLink]="['/list-detail', list.id]">
             <mat-card  *ngIf="isOdd" >
                 <mat-card-header>
                     <mat-card-title> {{list.name}}</mat-card-title>
@@ -42,7 +30,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="edit-button-container">
     <button mat-fab color="primary" aria-label="Add a list button">

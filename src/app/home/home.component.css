@@ -5,28 +5,7 @@
     z-index: 100;
 }
 
-.tool-bar-icon {
-    padding: 8px;
-}
 
-.toolbar-title {
-    font-size: 36px;
-    font-weight: 300;
-    margin-bottom: 20px;
-    margin-left: 9px;
-}
-
-.profile-img {
-    height: 40px;
-    width: 40px;
-    margin-top: 13px;
-    margin-right: 6px;
-    border-radius: 20px;
-}
-
-mat-toolbar-row>mat-icon {
-    flex-grow: 2;
-}
 
 .cards-container {
     display: flex;
