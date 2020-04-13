@@ -1,1 +1,22 @@
-<div class="list-name-container">{{list.name}}</div>
+<div class="list-detail-container">
+    <div class="list-header">
+        <div class="list-name">{{list.name}}</div>
+        <div class="list-description">{{list.description}}</div>
+    </div>
+    <div cdkDropList>
+        <div class="list-category-container"  cdkDropListGroup (cdkDropListDropped)="dropCategory($event)">
+            <div class="list-category-drag" *ngFor="let category of list.categoryList" cdkDrag>
+                <div>
+                    <div class="list-category-name">
+                        <input [(ngModel)]="category.name" (blur)="saveCategory(category)"/>
+                    </div>
+                    <div cdkDropList (cdkDropListDropped)="dropElement($event, category)">
+                        <div *ngFor="let element of category.elementList" cdkDrag>
+                            <app-list-element [element]="element"></app-list-element>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

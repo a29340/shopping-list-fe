@@ -19,7 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ListDetailComponent } from './list-detail/list-detail.component';
-
+import { ListElementComponent } from './list-detail/list-element/list-element.component';
 
 
 
@@ -27,8 +27,9 @@ import { ListDetailComponent } from './list-detail/list-detail.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    ListDetailComponent
-  ],
+    ListDetailComponent,
+    ListElementComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

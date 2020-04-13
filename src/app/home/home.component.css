@@ -1,11 +1,10 @@
-.edit-button-container {
+
+.add-button-container {
     position: fixed;
     right: 50px;
     bottom: 50px;
     z-index: 100;
 }
-
-
 
 .cards-container {
     display: flex;
