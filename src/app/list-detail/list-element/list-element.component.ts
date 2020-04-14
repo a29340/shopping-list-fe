@@ -31,4 +31,16 @@ export class ListElementComponent implements OnInit {
       })
     }
   }
+
+  add(): void {
+    this.modifiedElement.quantity++
+    this.saveElement()
+  }
+
+  subtract(): void {
+    if (this.modifiedElement.quantity >= 1) {
+      this.modifiedElement.quantity--
+      this.saveElement()
+    }
+  }
 }

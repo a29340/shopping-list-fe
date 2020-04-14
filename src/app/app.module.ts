@@ -20,6 +20,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ListDetailComponent } from './list-detail/list-detail.component';
 import { ListElementComponent } from './list-detail/list-element/list-element.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 
 
 
@@ -29,7 +31,7 @@ import { ListElementComponent } from './list-detail/list-element/list-element.co
     HomeComponent,
     ListDetailComponent,
     ListElementComponent
-    ],
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -46,6 +48,7 @@ import { ListElementComponent } from './list-detail/list-element/list-element.co
     MatInputModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatButtonToggleModule,
     DragDropModule,
     HttpClientModule,
     HttpClientXsrfModule.withOptions({ cookieName: 'XSRF-TOKEN' })
