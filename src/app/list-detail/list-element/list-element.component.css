@@ -17,6 +17,13 @@
     background: none;
 }
 
+.element-name >  input:focus {
+    border: none;
+    outline: none;
+}
+
+
+
 .element-quantity {
     margin-left: 1rem;
 }

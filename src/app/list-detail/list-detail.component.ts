@@ -45,9 +45,6 @@ export class ListDetailComponent implements OnInit {
 
   saveCategory(category: ShoppingCategory): void {
     this.listService.saveCategory(category).subscribe({
-      next: (savedCategory) => {
-        
-      },
       error: () => {
         console.log("Error saving category with id: " + category.id);
       }
