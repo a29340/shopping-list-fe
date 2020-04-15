@@ -3,8 +3,8 @@
         <div class="list-name">{{list.name}}</div>
         <div class="list-description">{{list.description}}</div>
     </div>
-    <div cdkDropList>
-        <div class="list-category-container"  cdkDropListGroup (cdkDropListDropped)="dropCategory($event)">
+    <div cdkDropList class="list-category-container">
+        <div cdkDropListGroup (cdkDropListDropped)="dropCategory($event)">
             <div class="list-category-drag" *ngFor="let category of list.categoryList" cdkDrag>
                 <div>
                     <div class="list-category-name">
@@ -19,4 +19,9 @@
             </div>
         </div>
     </div>
+</div>
+<div class="add-button-container">
+    <button mat-fab color="primary" aria-label="Add a list button">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>

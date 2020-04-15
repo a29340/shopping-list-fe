@@ -3,14 +3,16 @@
         <div class="checkbox-label-container">
             <div class="element-quantity">{{element.quantity}}</div>
             <div class="element-name">
-                <input [(ngModel)]="modifiedElement.name" (blur)="saveElement()" />
+                <input type="text" size="5" [(ngModel)]="modifiedElement.name" (blur)="saveElement()"/>
             </div>
         </div>
     </mat-checkbox>
-    <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="add()">
-        <mat-icon>add_circle_outline</mat-icon>
-    </button>
-    <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="subtract()">
-        <mat-icon>remove_circle_outline</mat-icon>
-    </button>
+    <div class="element-buttons-container">
+        <button mat-icon-button aria-label="Increment element quantity" (click)="increment()">
+            <mat-icon class="add-button">add_circle</mat-icon>
+        </button>
+        <button mat-icon-button aria-label="Decrement element quantity" (click)="decrement()">
+            <mat-icon class="remove-button">remove_circle</mat-icon>
+        </button>
+    </div>
 </div>

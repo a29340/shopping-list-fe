@@ -11,6 +11,10 @@
     margin-left: 9px;
 }
 
+.toolbar-title:focus{
+    outline: none;
+}
+
 .profile-img {
     height: 40px;
     width: 40px;

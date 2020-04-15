@@ -32,12 +32,12 @@ export class ListElementComponent implements OnInit {
     }
   }
 
-  add(): void {
+  increment(): void {
     this.modifiedElement.quantity++
     this.saveElement()
   }
 
-  subtract(): void {
+  decrement(): void {
     if (this.modifiedElement.quantity >= 1) {
       this.modifiedElement.quantity--
       this.saveElement()

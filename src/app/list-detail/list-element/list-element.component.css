@@ -1,6 +1,10 @@
 
 .element-container {
     margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
 }
 
 .checkbox-label-container {
@@ -22,8 +26,14 @@
     outline: none;
 }
 
-
-
 .element-quantity {
     margin-left: 1rem;
+}
+
+.add-button {
+    color: green;
+}
+
+.remove-button {
+    color: red;
 }

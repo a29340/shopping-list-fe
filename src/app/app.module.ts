@@ -16,11 +16,9 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ListDetailComponent } from './list-detail/list-detail.component';
 import { ListElementComponent } from './list-detail/list-element/list-element.component';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 
@@ -47,8 +45,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    MatGridListModule,
-    MatButtonToggleModule,
     DragDropModule,
     HttpClientModule,
     HttpClientXsrfModule.withOptions({ cookieName: 'XSRF-TOKEN' })
