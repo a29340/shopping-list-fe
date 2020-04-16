@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListService } from '../services/list-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { ShoppingList } from '../interfaces/ShoppingList';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ShoppingCategory } from '../interfaces/ShoppingCategory';
 import { ShoppingElement } from '../interfaces/ShoppingElement';
 
@@ -39,8 +39,15 @@ export class ListDetailComponent implements OnInit {
     moveItemInArray(this.list.categoryList, event.previousIndex, event.currentIndex);
   }
 
-  dropElement(event: CdkDragDrop<ShoppingElement[]>, category: ShoppingCategory) {
-    moveItemInArray(category.elementList, event.previousIndex, event.currentIndex);
+  dropElement(event: CdkDragDrop<ShoppingElement[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
   }
 
   saveCategory(category: ShoppingCategory): void {

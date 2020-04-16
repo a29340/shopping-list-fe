@@ -4,15 +4,18 @@
         <div class="list-description">{{list.description}}</div>
     </div>
     <div cdkDropList class="list-category-container">
-        <div cdkDropListGroup (cdkDropListDropped)="dropCategory($event)">
-            <div class="list-category-drag" *ngFor="let category of list.categoryList" cdkDrag>
-                <div>
-                    <div class="list-category-name">
-                        <input [(ngModel)]="category.name" (blur)="saveCategory(category)"/>
-                    </div>
-                    <div cdkDropList (cdkDropListDropped)="dropElement($event, category)">
-                        <div *ngFor="let element of category.elementList" cdkDrag>
-                            <app-list-element [element]="element"></app-list-element>
+        <div cdkDropList (cdkDropListDropped)="dropCategory($event)">
+            <div cdkDropListGroup>
+                <div class="list-category-drag" *ngFor="let category of list.categoryList" cdkDrag>
+                    <div>
+                        <div class="list-category-name">
+                            <mat-icon class="category-handle" cdkDragHandle>drag_indicator</mat-icon>
+                            <input [(ngModel)]="category.name" (blur)="saveCategory(category)"/>
+                        </div>
+                        <div cdkDropList [cdkDropListData]="category.elementList" (cdkDropListDropped)="dropElement($event)">
+                            <div *ngFor="let element of category.elementList" cdkDrag [cdkDragStartDelay]="300">
+                                <app-list-element [element]="element"></app-list-element>
+                            </div>
                         </div>
                     </div>
                 </div>

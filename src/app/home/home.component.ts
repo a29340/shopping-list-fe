@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ShoppingList } from '../interfaces/ShoppingList';
-import { ListService } from '../services/list-service.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {Component, OnInit} from '@angular/core';
+import {ShoppingList} from '../interfaces/ShoppingList';
+import {ListService} from '../services/list-service.service';
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
 
 
 @Component({
