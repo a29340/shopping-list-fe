@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {enableProdMode, NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,10 +19,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ListDetailComponent } from './list-detail/list-detail.component';
 import { ListElementComponent } from './list-detail/list-element/list-element.component';
-
-enableProdMode();
-
-
 
 
 @NgModule({
@@ -54,4 +50,5 @@ enableProdMode();
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

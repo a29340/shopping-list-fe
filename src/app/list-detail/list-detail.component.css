@@ -44,8 +44,6 @@
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* Animate an item that has been dropped. */
-
 .cdk-drag-animating {
     transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
 }
@@ -66,7 +64,7 @@
     border-radius: 10px;
     border-color: darkgrey;
     background-color: white;
-    opacity: 90%;
+    /* opacity: 90%; */
     box-shadow: 0 0 10px 3px rgba(36, 36, 36, 0.14);
 }
 
