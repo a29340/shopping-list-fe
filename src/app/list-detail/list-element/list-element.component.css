@@ -1,6 +1,6 @@
 
 .element-container {
-    margin: 1rem;
+    margin: 1rem 1rem 1rem 2rem;
     display: flex;
     flex-direction: row;
     align-items: baseline;
@@ -19,6 +19,7 @@
 .element-name >  input {
     border: none;
     background: none;
+    font-size: medium;
 }
 
 .element-name >  input:focus {
@@ -28,6 +29,7 @@
 
 .element-quantity {
     margin-left: 1rem;
+    font-size: medium;
 }
 
 .add-button {
