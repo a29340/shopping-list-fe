@@ -37,16 +37,31 @@ export class ListDetailComponent implements OnInit {
 
   dropCategory(event: CdkDragDrop<ShoppingCategory[]>) {
     moveItemInArray(this.list.categoryList, event.previousIndex, event.currentIndex);
+    this.listService.saveList(this.list).subscribe({
+      error: () => {
+        console.log("Error occurred during list save")
+      } 
+    })
   }
 
-  dropElement(event: CdkDragDrop<ShoppingElement[]>) {
+  dropElement(event: CdkDragDrop<ShoppingCategory>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(event.container.data.elementList, event.previousIndex, event.currentIndex);
+      this.listService.saveCategory(event.container.data).subscribe({
+        error: () => console.log("Error occurred during category save")
+      })
     } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
+      transferArrayItem(event.previousContainer.data.elementList,
+                        event.container.data.elementList,
                         event.previousIndex,
                         event.currentIndex);
+      this.listService.saveCategory(event.previousContainer.data).subscribe({
+        error: () => console.log("Error occurred during category save")
+      })
+      this.listService.saveCategory(event.container.data).subscribe({
+        error: () => console.log("Error occurred during category save")
+      })
+      
     }
   }
 
