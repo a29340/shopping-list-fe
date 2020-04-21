@@ -4,25 +4,41 @@
         <div class="list-description">{{list.description}}</div>
     </div>
     <div class="list-category-container">
-        <div cdkDropList (cdkDropListDropped)="dropCategory($event)">
-            <div class="category-list" cdkDropListGroup>
-                <div cdkDrag class="category" *ngFor="let category of list.categoryList" >
-                    <div class="list-category-name">
-                        <mat-icon class="category-handle" cdkDragHandle>drag_indicator</mat-icon>
-                        <input [(ngModel)]="category.name" (blur)="saveCategory(category)" />
-                    </div>
-                    <div cdkDropList [cdkDropListData]="category" (cdkDropListDropped)="dropElement($event)">
-                        <div cdkDrag class="element" *ngFor="let element of category.elementList"  [cdkDragStartDelay]="300">
-                            <app-list-element [element]="element"></app-list-element>
+        <div cdkDropListGroup>
+            <div cdkDropList
+                 [cdkDropListConnectedTo]="[deleteZone]"
+                 [cdkDropListData]="list"
+                 (cdkDropListDropped)="dropCategory($event)">
+                <div cdkDropListGroup class="category-list">
+                    <div cdkDrag class="category"
+                         (cdkDragStarted)="startedDragging()"
+                         (cdkDragEnded)="stoppedDragging()"
+                         *ngFor="let category of list.categoryList" >
+                        <div class="list-category-name">
+                            <mat-icon class="category-handle" cdkDragHandle>drag_indicator</mat-icon>
+                            <input [(ngModel)]="category.name" (blur)="saveCategory(category)" />
+                        </div>
+                        <div cdkDropList [cdkDropListConnectedTo]="[deleteZone]" [cdkDropListData]="category" (cdkDropListDropped)="dropElement($event)">
+                            <div cdkDrag class="element"
+                                 (cdkDragStarted)="startedDragging()"
+                                 (cdkDragEnded)="stoppedDragging()"
+                                 *ngFor="let element of category.elementList"
+                                 [cdkDragStartDelay]="150">
+                                <app-list-element [element]="element"></app-list-element>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div cdkDropList #deleteZone="cdkDropList" class="delete-zone" (cdkDropListDropped)="removeElement($event)"></div>
+            <div [@inOutAnimation] class="delete-button" *ngIf="isDragging">
+              <mat-icon>delete</mat-icon>
             </div>
         </div>
     </div>
 </div>
 <div class="add-button-container">
-    <button mat-fab color="primary" aria-label="Add a list button">
+    <button mat-fab color="primary" aria-label="Add a list button" (click)="openModal()">
         <mat-icon>add</mat-icon>
     </button>
 </div>

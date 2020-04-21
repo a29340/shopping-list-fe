@@ -13,32 +13,32 @@ import { ShoppingCategory } from '../interfaces/ShoppingCategory';
   providedIn: 'root'
 })
 export class ListService {
-  
+
   private backendUrl: string;
-  
-  private lists: ShoppingList[] = []; 
-  
-  constructor(private http: HttpClient) { 
+
+  private lists: ShoppingList[] = [];
+
+  constructor(private http: HttpClient) {
     this.backendUrl = environment.backendUrl;
   }
-  
+
   getLists(): Observable<ShoppingList[]> {
     return this.http.get<ShoppingList[]>(this.backendUrl + "shoppinglist");
   }
-  
+
   getList(id: string) {
     return this.http.get<ShoppingList>(this.backendUrl + "shoppinglist/" + id);
   }
-  
+
   saveList(list: ShoppingList) {
-    return this.http.post<ShoppingList>(this.backendUrl, list);
-  } 
-  
+    return this.http.post<ShoppingList>(this.backendUrl + "shoppinglist", list);
+  }
+
   deleteList(list: ShoppingList): Observable<any> {
     let resourceUri = this.backendUrl + encodeURIComponent(list.name);
     return this.http.delete(resourceUri);
   }
-  
+
   saveElement(element: ShoppingElement): Observable<ShoppingElement> {
     let resourceUri = this.backendUrl + "shoppingelement"
     return this.http.post<ShoppingElement>(resourceUri, element);
@@ -48,5 +48,14 @@ export class ListService {
     let resourceUri = this.backendUrl + "shoppingcategory"
     return this.http.post<ShoppingCategory>(resourceUri, category);
   }
-      
+
+  deleteElement(shoppingElement: ShoppingElement): Observable<ShoppingElement> {
+    let resourceUri = this.backendUrl + "shoppingelement/" + shoppingElement.id
+    return this.http.delete<ShoppingElement>(resourceUri);
+  }
+
+  deleteCategory(shoppingCategory: ShoppingCategory): Observable<ShoppingCategory> {
+    let resourceUri = this.backendUrl + "shoppingcategory/" + shoppingCategory.id
+    return this.http.delete<ShoppingCategory>(resourceUri);
+  }
 }

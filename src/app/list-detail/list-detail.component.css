@@ -51,19 +51,82 @@
     z-index: 100;
 }
 
+.delete-button {
+  opacity: 1;
+  position: fixed;
+  color: white;
+  background-color: red;
+  left: 50px;
+  bottom: 50px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 9px 0 lightgrey;
+}
+.delete-zone {
+  position: fixed;
+  color: white;
+  left: 50px;
+  bottom: 50px;
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+  z-index: 100;
+}
+
 .category {
     padding: 0.75rem;
     background-color: white;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.element {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .cdk-drag-placeholder.category,
 .cdk-drag-placeholder.element {
-    opacity: .3;
+    opacity: 0;
 }
 
-.cdk-drag-preview.category, 
+.cdk-drag-preview.category,
 .cdk-drag-preview.element {
     border-radius: 10px;
     opacity: 0.9;
     box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.425);
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes jello-vertical {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  40% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  50% {
+    transform: scale3d(0.85, 1.15, 1);
+  }
+  65% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  75% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.jello-vertical {
+  animation: jello-vertical 0.9s both;
 }

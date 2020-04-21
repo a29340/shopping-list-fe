@@ -1,5 +1,5 @@
 <div class="element-container">
-    <mat-checkbox [(ngModel)]="modifiedElement.checked">
+    <mat-checkbox [(ngModel)]="modifiedElement.checked" (change)="saveElement()">
         <div class="checkbox-label-container">
             <div class="element-quantity">{{element.quantity}}</div>
             <div class="element-name">
