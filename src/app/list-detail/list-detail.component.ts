@@ -1,8 +1,8 @@
-import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ListService} from '../services/list-service.service';
 import {ActivatedRoute} from '@angular/router';
 import {ShoppingList} from '../interfaces/ShoppingList';
-import {CdkDragDrop, CdkDragEnter, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {ShoppingCategory} from '../interfaces/ShoppingCategory';
 import {MatDialog} from '@angular/material/dialog';
 import {ListAddModalComponent} from './list-add-modal/list-add-modal.component';
@@ -121,7 +121,39 @@ export class ListDetailComponent implements OnInit {
             quantity: result.quantity,
             checked: false
           };
-          this.list.categoryList.filter(category => category.id == result.categoryId)[0].elementList.push(element);
+          this.listService.saveElement(element).subscribe({
+            next: (saved) => {
+              let shoppingCategory = this.list.categoryList.filter(category => category.id == result.categoryId)[0];
+              shoppingCategory.elementList.push(saved)
+              this.listService.saveCategory(shoppingCategory).subscribe({
+                error: (error) => {
+                  console.log("Failed to save category with new element: " + error)
+                  shoppingCategory.elementList.splice(shoppingCategory.elementList.indexOf(saved), 1)
+                }
+              })
+            },
+            error: (error) => console.log("Failed saving category with new element: " + error)
+          })
+        } else if(newElementType == ShoppingElementType.ShoppingCategory) {
+          let category: ShoppingCategory ={
+            id: null,
+            name: result.name,
+            description: result.description,
+            subcategoryList: [],
+            elementList: []
+          }
+          this.listService.saveCategory(category).subscribe({
+            next: (saved) => {
+              this.list.categoryList.push(saved)
+              this.listService.saveList(this.list).subscribe({
+                error: (error) => {
+                  console.log("Failed saving list with new category: " + error)
+                  this.list.categoryList.splice(this.list.categoryList.indexOf(saved), 1)
+                }
+              })
+            },
+            error: (error) => console.log("Failed to save new category: " + error)
+          })
         }
       }
     });
