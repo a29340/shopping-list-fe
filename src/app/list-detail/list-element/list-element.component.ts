@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, HostListener, Renderer2, ViewChild, ElementRef, Output, EventEmitter} from '@angular/core';
 import { ShoppingElement } from 'src/app/interfaces/ShoppingElement';
 import { ListService } from 'src/app/services/list-service.service';
+import {DragRef} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-list-element',
@@ -9,14 +10,28 @@ import { ListService } from 'src/app/services/list-service.service';
 })
 export class ListElementComponent implements OnInit {
 
-  constructor(private listService: ListService) { }
+  @ViewChild('elementcheckbox') elementCheckBox: ElementRef;
+  @ViewChild('elementcontainer') elementContainer: ElementRef;
+
+  constructor(private listService: ListService, private renderer: Renderer2) {
+    /* setting listener for click event inside label and outside element */
+    this.renderer.listen('window', 'click',(e:Event)=>{
+      if(!this.elementContainer.nativeElement.contains(e.target) ){
+        this.selected = false;
+      }
+      if (this.elementContainer.nativeElement.contains(e.target) && !this.elementCheckBox.nativeElement.contains(e.target)) {
+        this.selected = true;
+      }
+    });
+
+  }
 
   ngOnInit(): void {
     this.modifiedElement = { ...this.element };
   }
 
   @Input() element: ShoppingElement;
-
+  selected: boolean;
   modifiedElement: ShoppingElement;
 
   saveElement(): void {

@@ -1,18 +1,22 @@
-<div class="element-container">
-    <mat-checkbox [(ngModel)]="modifiedElement.checked" (change)="saveElement()">
-        <div class="checkbox-label-container">
-            <div class="element-quantity">{{element.quantity}}</div>
-            <div class="element-name">
-                <input type="text" size="5" [(ngModel)]="modifiedElement.name" (blur)="saveElement()"/>
-            </div>
-        </div>
-    </mat-checkbox>
-    <div class="element-buttons-container">
-        <button mat-icon-button aria-label="Increment element quantity" (click)="increment()">
-            <mat-icon class="add-button">add_circle</mat-icon>
-        </button>
-        <button mat-icon-button aria-label="Decrement element quantity" (click)="decrement()">
-            <mat-icon class="remove-button">remove_circle</mat-icon>
-        </button>
+<div class="element-container" [ngClass]="{'element-container-selected': selected}" #elementcontainer>
+  <div #elementcheckbox>
+    <mat-checkbox [(ngModel)]="modifiedElement.checked" (change)="saveElement()"></mat-checkbox>
+  </div>
+  <div class="element-label-container">
+    <div class="element-quantity">{{element.quantity}}</div>
+    <div class="element-name" *ngIf="selected">
+      <input type="text" size="10" [(ngModel)]="modifiedElement.name" (blur)="saveElement()"/>
     </div>
+    <div class="element-name" *ngIf="!selected">
+      {{modifiedElement.name}}
+    </div>
+  </div>
+  <div class="element-buttons-container" *ngIf="selected">
+    <button mat-icon-button aria-label="Increment element quantity" (click)="increment()">
+      <mat-icon class="add-button">add_circle</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Decrement element quantity" (click)="decrement()">
+      <mat-icon class="remove-button">remove_circle</mat-icon>
+    </button>
+  </div>
 </div>

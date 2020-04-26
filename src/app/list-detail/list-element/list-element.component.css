@@ -4,27 +4,26 @@
     margin: 0 0 0 1.5rem;
     display: flex;
     flex-direction: row;
-    align-items: baseline;
-    justify-content: space-between;
+    align-items: center;
+    /*justify-content: space-between;*/
     transition: box-shadow 200ms, margin 200ms;
 }
 
-.element-container:hover>.element-buttons-container, .element-container:active>.element-buttons-container {
-    opacity: 1;
-}
-
-.element-container:hover, .element-container:active {
+.element-container-selected {
     margin: 1rem 0 1rem 1.5rem;
     box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.425);
 }
 
-.checkbox-label-container {
+.element-label-container {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    min-height: 30px;
 }
 
 .element-name {
     margin-left: 1rem;
+    font-size: medium;
 }
 
 .element-name>input {
@@ -52,6 +51,6 @@
 }
 
 .element-buttons-container {
-    opacity: 0;
-    transition: opacity 200ms;
+  position: absolute;
+  right: 40px;
 }

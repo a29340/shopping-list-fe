@@ -127,7 +127,7 @@ export class ListDetailComponent implements OnInit {
               shoppingCategory.elementList.push(saved)
               this.listService.saveCategory(shoppingCategory).subscribe({
                 error: (error) => {
-                  console.log("Failed to save category with new element: " + error)
+                  console.log("Failed to save category with new element: " + JSON.stringify(error))
                   shoppingCategory.elementList.splice(shoppingCategory.elementList.indexOf(saved), 1)
                 }
               })
@@ -163,16 +163,27 @@ export class ListDetailComponent implements OnInit {
     let data = event.previousContainer.data;
     if (this.isShoppingCategory(data)) {
       console.log('removing element from category: ' + JSON.stringify(data.elementList[event.previousIndex]));
-      this.listService.deleteElement(data.elementList[event.previousIndex]).subscribe({
+      let shoppingCategory = data as ShoppingCategory;
+      let removedElements = shoppingCategory.elementList.splice(event.previousIndex, 1);
+      this.listService.saveCategory(shoppingCategory).subscribe({
         next: result =>{
-          (data as ShoppingCategory).elementList.splice(event.previousIndex, 1);
+          console.log("Saved category without element")
+        },
+        error: error => {
+          console.log("Error saving category with removed element: " + error)
+          shoppingCategory.elementList.push(removedElements[0])
         }
       })
     } else {
       console.log('removing category: ' + JSON.stringify((data as ShoppingList).categoryList[event.previousIndex]));
-      this.listService.deleteCategory(this.list.categoryList[event.previousIndex]).subscribe({
+      let removedCategories = this.list.categoryList.splice(event.previousIndex, 1)
+      this.listService.saveList(this.list).subscribe({
         next: result => {
-          this.list.categoryList.splice(event.previousIndex, 1)
+          console.log("Saved list without category")
+        },
+        error: error => {
+          console.log("Error saving list with removed category: " + error)
+          this.list.categoryList.push(removedCategories[0])
         }
       })
     }

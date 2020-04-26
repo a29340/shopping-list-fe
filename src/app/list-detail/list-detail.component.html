@@ -14,18 +14,22 @@
                          (cdkDragStarted)="startedDragging()"
                          (cdkDragEnded)="stoppedDragging()"
                          *ngFor="let category of list.categoryList" >
+                        <div *cdkDragPlaceholder class="category-drag-placeholder" >{{category.name}}</div>
+                        <div *cdkDragPreview class="category-drag-preview">{{category.name}}</div>
                         <div class="list-category-name">
                             <mat-icon class="category-handle" cdkDragHandle>drag_indicator</mat-icon>
                             <input [(ngModel)]="category.name" (blur)="saveCategory(category)" />
                         </div>
                         <div cdkDropList [cdkDropListConnectedTo]="[deleteZone]" [cdkDropListData]="category" (cdkDropListDropped)="dropElement($event)">
-                            <div cdkDrag class="element"
-                                 (cdkDragStarted)="startedDragging()"
-                                 (cdkDragEnded)="stoppedDragging()"
-                                 *ngFor="let element of category.elementList"
-                                 [cdkDragStartDelay]="150">
-                                <app-list-element [element]="element"></app-list-element>
-                            </div>
+                          <div cdkDrag (cdkDragStarted)="startedDragging()"
+                               (cdkDragEnded)="stoppedDragging()"
+                               [cdkDragDisabled]
+                               [cdkDragStartDelay]="150"
+                               *ngFor="let element of category.elementList">
+                            <div *cdkDragPlaceholder class="element-drag-placeholder">{{element.name}}</div>
+                            <div *cdkDragPreview class="element-drag-preview">{{element.name}}</div>
+                            <app-list-element class="element" [element]="element"></app-list-element>
+                          </div>
                         </div>
                     </div>
                 </div>

@@ -49,13 +49,4 @@ export class ListService {
     return this.http.post<ShoppingCategory>(resourceUri, category);
   }
 
-  deleteElement(shoppingElement: ShoppingElement): Observable<ShoppingElement> {
-    let resourceUri = this.backendUrl + "shoppingelement/" + shoppingElement.id
-    return this.http.delete<ShoppingElement>(resourceUri);
-  }
-
-  deleteCategory(shoppingCategory: ShoppingCategory): Observable<ShoppingCategory> {
-    let resourceUri = this.backendUrl + "shoppingcategory/" + shoppingCategory.id
-    return this.http.delete<ShoppingCategory>(resourceUri);
-  }
 }
