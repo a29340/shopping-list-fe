@@ -2,18 +2,24 @@ import {Component, OnInit} from '@angular/core';
 import {ShoppingList} from '../interfaces/ShoppingList';
 import {ListService} from '../services/list-service.service';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
+import {MatDialog} from '@angular/material/dialog';
+import {NewListModalComponent} from './new-list-modal/new-list-modal.component';
+import {inOut} from '../animations/animations';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [inOut]
 })
 export class HomeComponent implements OnInit {
 
   lists: ShoppingList[];
+  isDragging = false;
+  private bounce: boolean;
 
-  constructor(private listService: ListService) { }
+  constructor(private listService: ListService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.lists = [{
@@ -45,14 +51,16 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  deleteList(list: ShoppingList): boolean {
-    this.listService.deleteList(list).subscribe({
+  deleteList(event: CdkDragDrop<ShoppingList>): boolean {
+    const previousContainer = event.previousContainer
+    const listToDelete = previousContainer.data[event.previousIndex]
+    this.listService.deleteList(listToDelete).subscribe({
       next: () => {
-        console.log("deleted " + list.name)
-        this.lists.splice(this.lists.indexOf(list), 1);
+        console.log("deleted " + listToDelete.name)
+        this.lists.splice(this.lists.indexOf(listToDelete), 1);
       },
       error: () => {
-        console.log("Error deleting " + list.name);
+        console.log("Error deleting " + listToDelete.name);
       }
     })
     return false;
@@ -65,4 +73,32 @@ export class HomeComponent implements OnInit {
       this.lists[event.previousIndex] = swappingList
     }
   }
+
+  addNewList() {
+    const dialogRef = this.dialog.open(NewListModalComponent, {
+      width: '300px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null) {
+        this.listService.saveList({
+          id: null,
+          name: result.name,
+          categoryList: [],
+          description: result.description
+        }).subscribe({
+          next: () => console.log('success'),
+          error: () => console.log('error')
+        })
+      }
+    })
+  }
+  startedDragging() {
+    this.isDragging = true;
+    this.bounce = false;
+  }
+
+  stoppedDragging() {
+    this.isDragging = false;
+  }
+
 }

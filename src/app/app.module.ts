@@ -23,6 +23,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ListDetailComponent } from './list-detail/list-detail.component';
 import { ListElementComponent } from './list-detail/list-element/list-element.component';
 import { ListAddModalComponent } from './list-detail/list-add-modal/list-add-modal.component';
+import { NewListModalComponent } from './home/new-list-modal/new-list-modal.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ListAddModalComponent } from './list-detail/list-add-modal/list-add-mod
     HomeComponent,
     ListDetailComponent,
     ListElementComponent,
-    ListAddModalComponent
+    ListAddModalComponent,
+    NewListModalComponent
   ],
   imports: [
     BrowserModule,

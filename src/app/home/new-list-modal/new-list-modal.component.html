@@ -1,0 +1,18 @@
+<div mat-dialog-content>
+  <h2 mat-dialog-title>Add List</h2>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [formControl]="name" [value]="name.value">
+    <mat-error *ngIf="name.hasError('required')">
+      Name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput [formControl]="description" [value]="description.value">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="createNewElement()" cdkFocusInitial>Create</button>
+</div>

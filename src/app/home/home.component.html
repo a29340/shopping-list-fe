@@ -1,6 +1,12 @@
 <div class="cards-container" cdkDropListGroup>
-    <div class="cards-container-column"  cdkDropList (cdkDropListDropped)="drop($event)">
-        <div class="list-card" *ngFor="let list of lists; even as isEven;" cdkDrag  [routerLink]="['/list-detail', list.id]">
+    <div class="cards-container-column"  cdkDropList
+         [cdkDropListConnectedTo]="[deleteZone]"
+         [cdkDropListData]="lists"
+         (cdkDropListDropped)="drop($event)">
+        <div class="list-card" *ngFor="let list of lists; even as isEven;" cdkDrag
+             [routerLink]="['/list-detail', list.id]"
+             (cdkDragStarted)="startedDragging()"
+             (cdkDragEnded)="stoppedDragging()">
             <mat-card *ngIf="isEven" >
                 <mat-card-header>
                     <mat-card-title> {{list.name}}</mat-card-title>
@@ -14,8 +20,14 @@
             </mat-card>
         </div>
     </div>
-    <div class="cards-container-column" cdkDropList (cdkDropListDropped)="drop($event)">
-        <div class="list-card" *ngFor="let list of lists; odd as isOdd;" cdkDrag [routerLink]="['/list-detail', list.id]">
+    <div class="cards-container-column" cdkDropList
+         [cdkDropListConnectedTo]="[deleteZone]"
+         [cdkDropListData]="lists"
+         (cdkDropListDropped)="drop($event)">
+        <div class="list-card" *ngFor="let list of lists; odd as isOdd;" cdkDrag
+             (cdkDragStarted)="startedDragging()"
+             (cdkDragEnded)="stoppedDragging()"
+             [routerLink]="['/list-detail', list.id]">
             <mat-card  *ngIf="isOdd" >
                 <mat-card-header>
                     <mat-card-title> {{list.name}}</mat-card-title>
@@ -29,10 +41,15 @@
             </mat-card>
         </div>
     </div>
+    <div cdkDropList #deleteZone="cdkDropList" class="delete-zone" (cdkDropListDropped)="deleteList($event)"></div>
 </div>
 
 <div class="add-button-container">
-    <button mat-fab color="primary" aria-label="Add a list button">
+    <button mat-fab color="primary" aria-label="Add a list button" (click)="addNewList()">
         <mat-icon>add</mat-icon>
     </button>
+</div>
+
+<div [@inOutAnimation] class="delete-button" *ngIf="isDragging">
+  <mat-icon>delete</mat-icon>
 </div>

@@ -9,31 +9,14 @@ import {ListAddModalComponent} from './list-add-modal/list-add-modal.component';
 import {AddModalData, ShoppingElementType} from '../interfaces/AddModalData';
 import {ShoppingElement} from '../interfaces/ShoppingElement';
 import {animate, style, transition, trigger} from '@angular/animations';
+import {inOut} from '../animations/animations';
 
 @Component({
   selector: 'app-list-detail',
   templateUrl: './list-detail.component.html',
   styleUrls: ['./list-detail.component.css'],
   animations: [
-    trigger(
-      'inOutAnimation',
-      [
-        transition(
-          ':enter',
-          [
-            style({opacity: 0 }),
-            animate('.2s', style({ opacity: 1 }))
-          ]
-        ),
-        transition(
-          ':leave',
-          [
-            style({opacity: 1 }),
-            animate('1s ease-in', style({opacity: 0 }))
-          ]
-        )
-      ]
-    )
+    inOut
   ]
 })
 export class ListDetailComponent implements OnInit {
@@ -106,7 +89,7 @@ export class ListDetailComponent implements OnInit {
 
   openModal(): void {
     const dialogRef = this.dialog.open(ListAddModalComponent, {
-      width: '250px',
+      width: '300px',
       data: this.list.categoryList
     });
 

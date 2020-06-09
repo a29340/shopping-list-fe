@@ -1,0 +1,34 @@
+<div mat-dialog-content>
+  <h2 mat-dialog-title>Create</h2>
+  <mat-radio-group [(ngModel)]="elementType" class="list-radio-group">
+    <mat-radio-button class="list-radio-button" [value]="ShoppingElementType.ShoppingElement" [disabled]="this.existingCategories.length === 0">Element</mat-radio-button>
+    <mat-radio-button class="list-radio-button" [value]="ShoppingElementType.ShoppingCategory">Category</mat-radio-button>
+  </mat-radio-group>
+  <mat-form-field *ngIf="elementType==ShoppingElementType.ShoppingElement">
+    <mat-label>Category</mat-label>
+    <mat-select [(ngModel)]="categoryId">
+      <mat-option *ngFor="let category of existingCategories" [value]="category.id" >
+        {{category.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [formControl]="name" [value]="name.value">
+    <mat-error *ngIf="name.hasError('required')">
+      Name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="description">
+  </mat-form-field>
+  <mat-form-field *ngIf="elementType==ShoppingElementType.ShoppingElement">
+    <mat-label>Quantity</mat-label>
+    <input type="number" matInput [(ngModel)]="quantity">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="createNewElement()" cdkFocusInitial>Create</button>
+</div>

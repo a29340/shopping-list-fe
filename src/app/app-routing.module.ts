@@ -4,10 +4,10 @@ import { HomeComponent } from './home/home.component';
 import { ListDetailComponent } from './list-detail/list-detail.component';
 
 
-const routes: Routes = [ 
+const routes: Routes = [
   { path: '', redirectTo: '/lists', pathMatch: 'full'},
-  { path: 'lists', component: HomeComponent },
-  { path: 'list-detail/:id', component: ListDetailComponent }
+  { path: 'lists', component: HomeComponent, data: {animation: 'HomePage'} },
+  { path: 'list-detail/:id', component: ListDetailComponent, data: {animation: 'DetailPage'} }
 ];
 
 @NgModule({

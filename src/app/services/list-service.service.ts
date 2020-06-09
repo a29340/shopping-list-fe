@@ -35,7 +35,7 @@ export class ListService {
   }
 
   deleteList(list: ShoppingList): Observable<any> {
-    let resourceUri = this.backendUrl + encodeURIComponent(list.name);
+    let resourceUri = this.backendUrl + "shoppinglist/" + encodeURIComponent(list.id);
     return this.http.delete(resourceUri);
   }
 

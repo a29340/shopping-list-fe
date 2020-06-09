@@ -2,3 +2,29 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.delete-button {
+  opacity: 1;
+  position: fixed;
+  color: white;
+  background-color: red;
+  left: 50px;
+  bottom: 50px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 9px 0 lightgrey;
+}
+.delete-zone {
+  position: fixed;
+  color: white;
+  left: 50px;
+  bottom: 50px;
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+  z-index: 100;
+}
