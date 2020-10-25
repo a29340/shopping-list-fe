@@ -24,6 +24,9 @@ import { ListDetailComponent } from './list-detail/list-detail.component';
 import { ListElementComponent } from './list-detail/list-element/list-element.component';
 import { ListAddModalComponent } from './list-detail/list-add-modal/list-add-modal.component';
 import { NewListModalComponent } from './home/new-list-modal/new-list-modal.component';
+import {AuthModule} from '@auth0/auth0-angular';
+import { UserInfoComponent } from './user-info/user-info.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -33,7 +36,8 @@ import { NewListModalComponent } from './home/new-list-modal/new-list-modal.comp
     ListDetailComponent,
     ListElementComponent,
     ListAddModalComponent,
-    NewListModalComponent
+    NewListModalComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +53,7 @@ import { NewListModalComponent } from './home/new-list-modal/new-list-modal.comp
     MatTabsModule,
     MatIconModule,
     MatButtonModule,
+    MatTooltipModule,
     MatInputModule,
     MatDialogModule,
     MatRadioModule,
@@ -56,7 +61,11 @@ import { NewListModalComponent } from './home/new-list-modal/new-list-modal.comp
     DragDropModule,
     HttpClientModule,
     HttpClientXsrfModule.withOptions({cookieName: 'XSRF-TOKEN'}),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule.forRoot({
+      domain: 'dev-6iexu8k3.us.auth0.com',
+      clientId: 'A705ukIzaAfihrQoKcpVQlYckTyDw5so'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

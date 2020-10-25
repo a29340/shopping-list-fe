@@ -15,14 +15,6 @@
     outline: none;
 }
 
-.profile-img {
-    height: 40px;
-    width: 40px;
-    margin-top: 13px;
-    margin-right: 6px;
-    border-radius: 20px;
-}
-
 mat-toolbar-row>mat-icon {
     flex-grow: 2;
 }

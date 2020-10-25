@@ -1,0 +1,7 @@
+<div *ngIf="auth.user$ | async as user">
+    <img [src]="user.picture" class="profile-img " matTooltip="Info about the action"
+         (click)="auth.logout({ returnTo: document.location.origin })"/>
+</div>
+<div *ngIf="!isLogged">
+  <button mat-flat-button color="accent" (click)="auth.loginWithRedirect()">Login</button>
+</div>
