@@ -25,14 +25,14 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Install Dependencies
         run: npm install
-        
+
       - name: Build
-        run: ng build
-      
+        run: node_modules/@angular/cli/bin/ng build
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v2.0.1
         with:
           labels: shopping-list-fe
           platforms: arm32v7
-      
-      
+
+
