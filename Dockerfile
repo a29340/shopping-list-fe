@@ -1,4 +1,4 @@
-FROM andreilhicas/nginx-letsencrypt
+FROM anesi/nginx-letsencrypt:arm64
 
 ARG dist="./dist/"
 
