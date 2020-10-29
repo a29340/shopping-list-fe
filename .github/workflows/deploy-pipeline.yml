@@ -20,13 +20,13 @@ jobs:
     steps:
 
       - name: Pull image
-        run: docker pull anesi/shopping-list-fe:latest
+        run: sudo docker pull anesi/shopping-list-fe:latest
 
       - name: Stop old container
-        run: docker container stop shopping-list-fe
+        run: sudo docker container stop shopping-list-fe
 
       - name: Remove old container
-        run: docker container rm shopping-list-fe
+        run: sudo docker container rm shopping-list-fe
 
       - name: Start new container
-        run: docker run --name shopping-list-fe -p 80:80 -p 443:443 --detach anesi/shopping-list-fe:latest
+        run: sudo docker run --name shopping-list-fe -p 80:80 -p 443:443 --detach anesi/shopping-list-fe:latest
