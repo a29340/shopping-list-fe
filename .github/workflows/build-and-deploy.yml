@@ -9,8 +9,6 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    strategy:
-      max-parallel: 1
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -39,8 +37,6 @@ jobs:
 
   deploy:
     runs-on: orangepi-runner
-    strategy:
-      max-parallel: 1
     if: success()
     steps:
       - name: Pull image
