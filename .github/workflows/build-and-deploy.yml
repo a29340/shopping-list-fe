@@ -6,10 +6,12 @@ on:
   push:
     branches:
       develop
+
 jobs:
   # This workflow contains a single job called "build"
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -37,16 +39,16 @@ jobs:
 
   deploy:
     runs-on: orangepi-runner
-    if: success()
     steps:
+
       - name: Pull image
-        run: sudo docker pull anesi/shopping-list-fe:latest
+        run: docker pull anesi/shopping-list-fe:latest
 
       - name: Stop old container
-        run: sudo docker container stop shopping-list-fe
+        run: docker container stop shopping-list-fe
 
       - name: Remove old container
-        run: sudo docker container rm shopping-list-fe
+        run: docker container rm shopping-list-fe
 
       - name: Start new container
-        run: sudo docker run --name shopping-list-fe -p 80:80 -p 443:443 --detach anesi/shopping-list-fe:latest
+        run: docker run --name shopping-list-fe -p 80:80 -p 443:443 --detach anesi/shopping-list-fe:latest
