@@ -12,7 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -24,9 +24,10 @@ import { ListDetailComponent } from './list-detail/list-detail.component';
 import { ListElementComponent } from './list-detail/list-element/list-element.component';
 import { ListAddModalComponent } from './list-detail/list-add-modal/list-add-modal.component';
 import { NewListModalComponent } from './home/new-list-modal/new-list-modal.component';
-import {AuthModule} from '@auth0/auth0-angular';
+import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
 import { UserInfoComponent } from './user-info/user-info.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {environment} from '../environments/environment';
 
 
 @NgModule({
@@ -64,10 +65,31 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ReactiveFormsModule,
     AuthModule.forRoot({
       domain: 'dev-6iexu8k3.us.auth0.com',
-      clientId: 'A705ukIzaAfihrQoKcpVQlYckTyDw5so'
+      clientId: 'A705ukIzaAfihrQoKcpVQlYckTyDw5so',
+      audience: environment.audience,
+
+      scope: 'access',
+
+      // Specify configuration for the interceptor
+      httpInterceptor: {
+        allowedList: [
+          {
+            // Match any request that starts 'https://dev-6iexu8k3.us.auth0.com/api/v2/' (note the asterisk)
+            uri: 'api/shopping/*',
+            tokenOptions: {
+              // The attached token should target this audience
+              audience: environment.audience,
+              // The attached token should have these scopes
+              scope: 'access'
+            }
+          }
+        ]
+      }
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

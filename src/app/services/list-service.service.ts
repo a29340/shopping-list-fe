@@ -1,12 +1,10 @@
-import { Injectable } from '@angular/core';
-import { ShoppingList } from '../interfaces/ShoppingList';
-import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-import { ShoppingElement } from '../interfaces/ShoppingElement';
-import { isPlatformServer } from '@angular/common';
-import { ShoppingCategory } from '../interfaces/ShoppingCategory';
-
+import {Injectable} from '@angular/core';
+import {ShoppingList} from '../interfaces/ShoppingList';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {ShoppingElement} from '../interfaces/ShoppingElement';
+import {ShoppingCategory} from '../interfaces/ShoppingCategory';
 
 
 @Injectable({
@@ -14,38 +12,36 @@ import { ShoppingCategory } from '../interfaces/ShoppingCategory';
 })
 export class ListService {
 
-  private backendUrl: string;
-
-  private lists: ShoppingList[] = [];
 
   constructor(private http: HttpClient) {
-    this.backendUrl = environment.backendUrl;
+
   }
 
+
   getLists(): Observable<ShoppingList[]> {
-    return this.http.get<ShoppingList[]>(this.backendUrl + "shoppinglist");
+    return this.http.get<ShoppingList[]>(environment.backendUrl + "shopping/list");
   }
 
   getList(id: string) {
-    return this.http.get<ShoppingList>(this.backendUrl + "shoppinglist/" + id);
+    return this.http.get<ShoppingList>(environment.backendUrl + "shopping/list/" + id);
   }
 
   saveList(list: ShoppingList) {
-    return this.http.post<ShoppingList>(this.backendUrl + "shoppinglist", list);
+    return this.http.post<ShoppingList>(environment.backendUrl + "shopping/list", list);
   }
 
   deleteList(list: ShoppingList): Observable<any> {
-    let resourceUri = this.backendUrl + "shoppinglist/" + encodeURIComponent(list.id);
+    let resourceUri = environment.backendUrl + "shopping/list/" + encodeURIComponent(list.id);
     return this.http.delete(resourceUri);
   }
 
   saveElement(element: ShoppingElement): Observable<ShoppingElement> {
-    let resourceUri = this.backendUrl + "shoppingelement"
+    let resourceUri = environment.backendUrl + "shopping/element"
     return this.http.post<ShoppingElement>(resourceUri, element);
   }
 
   saveCategory(category: ShoppingCategory): Observable<ShoppingCategory> {
-    let resourceUri = this.backendUrl + "shoppingcategory"
+    let resourceUri = environment.backendUrl + "shopping/category"
     return this.http.post<ShoppingCategory>(resourceUri, category);
   }
 
