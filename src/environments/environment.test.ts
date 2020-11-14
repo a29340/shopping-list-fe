@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  audience: 'https://shoppinglist-test.ddns.net/',
   production: false,
   backendUrl: "api/",
-  audience: 'http://localhost:8081/',
   clientId: 'A705ukIzaAfihrQoKcpVQlYckTyDw5so',
   domain: 'dev-6iexu8k3.us.auth0.com'
 };

@@ -64,8 +64,8 @@ import {environment} from '../environments/environment';
     HttpClientXsrfModule.withOptions({cookieName: 'XSRF-TOKEN'}),
     ReactiveFormsModule,
     AuthModule.forRoot({
-      domain: 'dev-6iexu8k3.us.auth0.com',
-      clientId: 'A705ukIzaAfihrQoKcpVQlYckTyDw5so',
+      domain: environment.domain,
+      clientId: environment.clientId,
       audience: environment.audience,
 
       scope: 'access',
@@ -75,7 +75,7 @@ import {environment} from '../environments/environment';
         allowedList: [
           {
             // Match any request that starts 'https://dev-6iexu8k3.us.auth0.com/api/v2/' (note the asterisk)
-            uri: 'api/shopping/*',
+            uri: 'api/*',
             tokenOptions: {
               // The attached token should target this audience
               audience: environment.audience,
