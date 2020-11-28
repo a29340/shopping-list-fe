@@ -28,6 +28,8 @@ import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
 import { UserInfoComponent } from './user-info/user-info.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {environment} from '../environments/environment';
+import { LogoutBottomSheetComponent } from './user-info/logout-bottom-sheet/logout-bottom-sheet.component';
+import { MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import {environment} from '../environments/environment';
     ListElementComponent,
     ListAddModalComponent,
     NewListModalComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    LogoutBottomSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import {environment} from '../environments/environment';
     MatFormFieldModule,
     MatTabsModule,
     MatIconModule,
+    MatBottomSheetModule,
     MatButtonModule,
     MatTooltipModule,
     MatInputModule,

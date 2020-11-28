@@ -1,6 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '@auth0/auth0-angular';
-import {DOCUMENT} from '@angular/common';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
+import {LogoutBottomSheetComponent} from './logout-bottom-sheet/logout-bottom-sheet.component';
 
 @Component({
   selector: 'app-user-info',
@@ -11,11 +12,15 @@ export class UserInfoComponent implements OnInit {
 
   public isLogged = false;
 
-  constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService) {
+  constructor(public auth: AuthService,
+              private logoutBottomSheet: MatBottomSheet) {
     auth.isAuthenticated$.subscribe(isLogged => this.isLogged = isLogged);
   }
 
   ngOnInit(): void {
   }
 
+  openBottomSheet(): void {
+    this.logoutBottomSheet.open(LogoutBottomSheetComponent)
+  }
 }

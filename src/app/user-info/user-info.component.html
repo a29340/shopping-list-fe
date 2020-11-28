@@ -1,4 +1,3 @@
 <div *ngIf="auth.user$ | async as user">
-    <img [src]="user.picture" class="profile-img " matTooltip="Logout"
-         (click)="auth.logout({ returnTo: document.location.origin })" alt="profile-picture"/>
+    <img [src]="user.picture" class="profile-img " (click)="openBottomSheet()" alt="profile-picture"/>
 </div>
