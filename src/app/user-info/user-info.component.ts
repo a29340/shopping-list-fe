@@ -13,7 +13,6 @@ export class UserInfoComponent implements OnInit {
 
   constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService) {
     auth.isAuthenticated$.subscribe(isLogged => this.isLogged = isLogged);
-
   }
 
   ngOnInit(): void {
