@@ -18,8 +18,8 @@ export class ListService {
   }
 
 
-  getLists(): Observable<ShoppingList[]> {
-    return this.http.get<ShoppingList[]>(environment.backendUrl + "shopping/list");
+  getUserLists(): Observable<ShoppingList[]> {
+    return this.http.get<ShoppingList[]>(environment.backendUrl + "shopping/user");
   }
 
   getList(id: string) {

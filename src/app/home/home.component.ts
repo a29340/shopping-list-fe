@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
   }
 
   getLists(): void {
-    this.listService.getLists().subscribe({
+    this.listService.getUserLists().subscribe({
       next: (lists => {
         this.lists = lists;
       }),
