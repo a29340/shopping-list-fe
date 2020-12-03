@@ -29,4 +29,4 @@ jobs:
         run: sudo docker container rm shopping-list-fe
 
       - name: Start new container
-        run: sudo docker run --name shopping-list-fe --link shopping-list-be:shopping-list-be -p 80:80 -p 443:443 --detach anesi/shopping-list-fe:latest
+        run: sudo docker run --name shopping-list-fe --link shopping-list-be:shopping-list-be -p 8080:80 -p 4430:443 --detach anesi/shopping-list-fe:latest
