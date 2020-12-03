@@ -1,4 +1,4 @@
-FROM anesi/nginx-letsencrypt:arm64
+FROM nginx:stable-alpine
 
 ARG dist="./dist/"
 ARG nginx="nginx.conf"
